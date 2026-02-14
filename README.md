@@ -95,8 +95,36 @@ while not done:
 
 client.close()
 ```
+server.py
+```
+import socket
+from base64 import decode
+from operator import truediv
+
+server =socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+server.bind(('localhost', 9999))
+server.listen()
+client,addr=server.accept()
+
+done = False
+
+while not done:
+    msg = client.recv(1024).decode('utf-8')
+
+    if msg == 'quit':
+        done = True
+    else:
+        print(msg)
+
+    client.send(input("Message ").encode('utf-8'))
 
 
+client.close()
+server.close()
+```
+## Output:
+
+<img width="1471" height="396" alt="3387a89a-890f-4322-900f-9aed4ceee866" src="https://github.com/user-attachments/assets/76989b67-190a-4ffd-af6b-bd36204dc694" />
 
 ## Result:
 
